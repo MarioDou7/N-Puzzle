@@ -7,10 +7,57 @@ namespace Program
 {
     class NPuzzle
     {
-        static bool isFeasablie(char[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
+        static bool isFeasablie(int puzzleSize,char[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
         {
             //2.	Determine whether a given state is solvable or not? 
-            throw new NotImplementedException();
+            List<int> arr = new List<int>();
+            for (int i = 0; i < puzzleSize; i++)
+            {
+                var values = (Console.ReadLine().Split(' '));
+                for (int j = 0; j < puzzleSize; j++)
+                {
+                    arr.Add(int.Parse(values[j]));
+                }
+            }
+
+            int invCount = 0;
+
+            for (int i = 0; i < arr.Count; i++)
+            {
+                for (int j = i + 1; j < arr.Count; j++)
+                {
+                    if (arr[i] == 0 || arr[j] == 0)
+                        continue;
+                    if (arr[i] > arr[j])
+                        invCount++;
+                }
+
+            }
+            if (puzzleSize % 2 != 0)
+            {
+                if (invCount % 2 == 0)
+                {
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int blancIndex = arr.IndexOf(0);
+                blancIndex = blancIndex / puzzleSize;
+                int blancPositionFromBottom = puzzleSize - blancIndex;
+                if (blancPositionFromBottom % 2 == 0 && invCount % 2 != 0)
+                    return true;
+                else if (blancPositionFromBottom % 2 != 0 && invCount % 2 == 0)
+                    return true;
+                else
+                    return false;
+
+            }
         }
 
         static void Solve(char[,] boardPuzzle) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
