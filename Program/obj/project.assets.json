@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ziad\\source\\repos\\N-Puzzle Project\\Program\\Program.csproj",
+      "projectUniqueName": "C:\\Users\\Ziad\\source\\repos\\algorithm_project\\Program\\Program.csproj",
       "projectName": "Program",
-      "projectPath": "C:\\Users\\Ziad\\source\\repos\\N-Puzzle Project\\Program\\Program.csproj",
+      "projectPath": "C:\\Users\\Ziad\\source\\repos\\algorithm_project\\Program\\Program.csproj",
       "packagesPath": "C:\\Users\\Ziad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ziad\\source\\repos\\N-Puzzle Project\\Program\\obj\\",
+      "outputPath": "C:\\Users\\Ziad\\source\\repos\\algorithm_project\\Program\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ziad\\AppData\\Roaming\\NuGet\\NuGet.Config",
