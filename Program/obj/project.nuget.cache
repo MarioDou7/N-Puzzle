@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DRUEJr+wSrJcirWYhY/KM1E8MBPqMaZKpsNcmoyvDZzjvdz3maKU7wJ32iU9prE9UsxSACiL8eX3Ora8ctwp/Q==",
+  "dgSpecHash": "CW3mrfOiVFB1NNG6ZgJ9BD8S2N51aZHfyccyphVNYo685ZaGsc3dR6MDDY31wd74Dk/TifmSoEgtqTvPzAQurA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ziad\\source\\repos\\N-Puzzle Project\\Program\\Program.csproj",
+  "projectFilePath": "C:\\Users\\Ziad\\source\\repos\\algorithm_project\\Program\\Program.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
