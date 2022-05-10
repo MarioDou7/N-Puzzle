@@ -7,7 +7,7 @@ namespace Program
 {
     public static class NPuzzle
     {
-        static bool isFeasablie(int puzzleSize,char[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
+        public static bool isFeasablie(int puzzleSize,char[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
 
         {
             //2.	Determine whether a given state is solvable or not? 
