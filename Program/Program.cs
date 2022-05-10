@@ -18,7 +18,9 @@ namespace Program
 
             char[,] board = { { '8', '1', '3' }, { '4', '0', '2' }, { '7', '6', '5' } };
 
-            NPuzzle.Solve(board);
+            bool solu =  NPuzzle.isFeasablie(board.Length,board);
+            if (solu)
+                Console.WriteLine("Done");
 
             Console.WriteLine("Hello World!");
         }
