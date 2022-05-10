@@ -7,20 +7,19 @@ namespace Program
 {
     public static class NPuzzle
     {
-        public static bool isFeasablie(int puzzleSize,char[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
-
+        public static bool isFeasablie(int[,] boardPuzzle)  //should be bounded by O(S^2), S is the puzzle size
         {
             //2.	Determine whether a given state is solvable or not? 
             List<int> arr = new List<int>();
+            double puzzleSize = boardPuzzle.Length;
+            puzzleSize = Math.Sqrt(puzzleSize);
             for (int i = 0; i < puzzleSize; i++)
             {
-                var values = (Console.ReadLine().Split(' '));
                 for (int j = 0; j < puzzleSize; j++)
                 {
-                    arr.Add(int.Parse(values[j]));
+                    arr.Add(boardPuzzle[i, j]);
                 }
             }
-
             int invCount = 0;
 
             for (int i = 0; i < arr.Count; i++)
@@ -49,8 +48,8 @@ namespace Program
             else
             {
                 int blancIndex = arr.IndexOf(0);
-                blancIndex = blancIndex / puzzleSize;
-                int blancPositionFromBottom = puzzleSize - blancIndex;
+                blancIndex = blancIndex / Convert.ToInt32(puzzleSize);
+                int blancPositionFromBottom = Convert.ToInt32(puzzleSize) - blancIndex;
                 if (blancPositionFromBottom % 2 == 0 && invCount % 2 != 0)
                     return true;
                 else if (blancPositionFromBottom % 2 != 0 && invCount % 2 == 0)
