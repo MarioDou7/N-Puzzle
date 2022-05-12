@@ -32,6 +32,7 @@ namespace Program
             this.zero_x    = zero_x;
             this.zero_y    = zero_y;
         }
+
         public Node(Node node)
         {
             N = node.N;
@@ -47,6 +48,65 @@ namespace Program
                     board[i, j] = node.board[i, j];
                 
         }
+        
+        public Node MoveUp(Node node)
+        {
+            Node child = new Node(node);
+            child.board[zero_x, zero_y] = child.board[zero_x - 1, zero_y];
+            child.board[zero_x - 1, zero_y] = 0;
+
+            child.zero_x = zero_x - 1 ;
+
+            child.movments++;
+            child.Manhatten();
+            child.Hamming();
+
+            return child;
+        }
+        public Node MoveDown(Node node)
+        {
+            Node child = new Node(node);
+            child.board[zero_x, zero_y] = child.board[zero_x + 1, zero_y];
+            child.board[zero_x + 1, zero_y] = 0;
+
+            child.zero_x = zero_x + 1;
+
+            child.movments++;
+            child.Manhatten();
+            child.Hamming();
+
+
+            return child;
+        }
+        public Node MoveLeft(Node node)
+        {
+            Node child = new Node(node);
+            child.board[zero_x, zero_y] = child.board[zero_x, zero_y - 1];
+            child.board[zero_x, zero_y - 1] = 0;
+
+            child.zero_y = zero_y - 1;
+
+            child.movments++;
+            child.Manhatten();
+            child.Hamming();
+
+            return child;
+        }
+        public Node MoveRight(Node node)
+        {
+            Node child = new Node(node);
+            child.board[zero_x, zero_y] = child.board[zero_x, zero_y + 1];
+            child.board[zero_x, zero_y + 1] = 0;
+
+            child.zero_y = zero_y + 1;
+
+            child.movments++;
+            child.Manhatten();
+            child.Hamming();
+
+            return child;
+        }
+
         private void Manhatten() // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
         {
             int N = (int)Math.Sqrt(board.Length);
@@ -67,8 +127,10 @@ namespace Program
             }
 
             this.manhatten = manhatten;
+            this.fn_man = this.manhatten + this.movments;
 
         }
+        
         private void Hamming() // The number of blocks in the wrong position + the number of moves made so far to get to the state. 
         {            
             int len = board.Length;
@@ -89,63 +151,11 @@ namespace Program
             }
 
             this.hamming = hamm;
+            this.fn_ham = this.hamming + this.movments;
+
+
         }
-        public Node MoveUp(Node node)
-        {
-            Node child = new Node(node);
-            child.board[zero_x, zero_y] = child.board[zero_x - 1, zero_y];
-            child.board[zero_x - 1, zero_y] = 0;
-
-            child.Manhatten();
-            child.Hamming();
-            child.movments++;
-            child.fn_ham = child.hamming  + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-            return child;
-        }
-        public Node MoveDown(Node node)
-        {
-            Node child = new Node(node);
-            child.board[zero_x, zero_y] = child.board[zero_x + 1, zero_y];
-            child.board[zero_x + 1, zero_y] = 0;
-
-            child.Manhatten();
-            child.Hamming();
-            child.movments++;
-            child.fn_ham = child.hamming  + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-            return child;
-        }
-        public Node MoveLeft(Node node)
-        {
-            Node child = new Node(node);
-            child.board[zero_x, zero_y] = child.board[zero_x, zero_y - 1];
-            child.board[zero_x, zero_y - 1] = 0;
-
-            child.Manhatten();
-            child.Hamming();
-            child.movments++;
-            child.fn_ham = child.hamming  + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-            return child;
-        }
-        public Node MoveRight(Node node)
-        {
-            Node child = new Node(node);
-            child.board[zero_x, zero_y] = child.board[zero_x, zero_y + 1];
-            child.board[zero_x, zero_y + 1] = 0;
-
-            child.Manhatten();
-            child.Hamming();
-            child.movments++;
-            child.fn_ham = child.hamming  + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-            return child;
-        }
+        
         
     }
 
