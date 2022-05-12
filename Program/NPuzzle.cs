@@ -60,12 +60,20 @@ namespace Program
             }
         }
 
-        public static void Solve(char[,] boardPuzzle) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
+        public static void Solve(int[,] boardPuzzle) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
+            Node parent = new Node(boardPuzzle,0,1);
+            // call get direction function
+            Node temp = parent;
+
+            // choose to move which way ??
+            //Node newChild = parent.moveUp(temp);
+
+            // put the newChild in the piriority queue
 
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             
         }
 

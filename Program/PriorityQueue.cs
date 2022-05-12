@@ -58,6 +58,7 @@ namespace Program
             return boards[index_ofChild/2];
         }  // return the parent node
 
+        
     
     }
 
