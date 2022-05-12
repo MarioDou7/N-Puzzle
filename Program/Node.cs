@@ -57,8 +57,25 @@ namespace Program
         }
         private int Hamming(int[,] board) // The number of blocks in the wrong position + the number of moves made so far to get to the state. 
         {
-            throw new NotImplementedException();
-        }
+            
+            char[,] goalState = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '0' } };
+            int len = (board.Length);
+            int N = (int)Math.Sqrt(len);
+            int hamm = 0, res = 0;
+            for (int i = 0; i < len; i++)
+            {
+                if (board[i / N, i % N] != goalState[i / N, i % N])
+                {
+                    if (board[i / N, i % N] == '0')
+                        continue;
+                    hamm++;
+                }
+            }
 
+            return hamm; 
+        }
+            
     }
+
 }
+
