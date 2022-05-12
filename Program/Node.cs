@@ -109,7 +109,6 @@ namespace Program
 
         private void Manhatten() // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
         {
-            int N = (int)Math.Sqrt(board.Length);
             int row_goal;
             int col_goal;
             int number;
@@ -133,8 +132,6 @@ namespace Program
         
         private void Hamming() // The number of blocks in the wrong position + the number of moves made so far to get to the state. 
         {            
-            int len = board.Length;
-            int N = (int)Math.Sqrt(len);
             int number,row_goal,col_goal;
             int hamm = 0;
             
@@ -152,8 +149,6 @@ namespace Program
 
             this.hamming = hamm;
             this.fn_ham = this.hamming + this.movments;
-
-
         }
         
         
