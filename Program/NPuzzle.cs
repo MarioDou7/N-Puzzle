@@ -69,38 +69,5 @@ namespace Program
             
         }
 
-/*        private void PrepareTree()
-        {
-            // 3.a	Convert the given puzzle into tree while applying the A* search algorithm
-            //Where each node in the search tree represents an arrangement of tiles (one board state)
-
-            throw new NotImplementedException();
-        }*/
-        static int Manhatten(char[,] currentState) // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
-        {
-            int N = (int)Math.Sqrt(currentState.Length);
-            int row_goal;
-            int col_goal;
-            int number;
-            int manhatten = 0;
-
-            for (int i = 0; i < currentState.Length; i++)
-            {
-                number = Int32.Parse(currentState[i / N, i % N].ToString());
-                if (number == 0)
-                    continue;
-                row_goal = (number-1) / N;                   //find the goal postion of the number (at which row)              
-                col_goal = (number-1) % N;                   //find the goal postion of the number (at which col)
-
-                manhatten += (Math.Abs(row_goal - i / N) + Math.Abs(col_goal - i % N));
-            }
-
-            return manhatten;
-
-        }
-        static int Hamming(char[,] currentState, char[,] goalState) // The number of blocks in the wrong position + the number of moves made so far to get to the state. 
-        {
-            throw new NotImplementedException();
-        }
     }
 }
