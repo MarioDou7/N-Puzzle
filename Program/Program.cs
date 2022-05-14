@@ -25,7 +25,7 @@ namespace Program
             //int[,] board = { { 2, 1, 3, 4 }, { 5, 8, 7, 6 }, { 9, 10, 12, 11 }, { 15, 13, 14, 0 } };
             bool ok = NPuzzle.isFeasablie(board);
             if (ok)
-                movment = NPuzzle.Solve(board, 0, 0, false);
+                movment = NPuzzle.Solve(board, 0, 0, true);
             else
                 Console.WriteLine("Not Solvable");
             //NPuzzle.Solve(board);

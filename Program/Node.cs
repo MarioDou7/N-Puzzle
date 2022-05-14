@@ -48,7 +48,7 @@ namespace Program
             hamming = node.hamming;
             manhatten = node.manhatten;
             last_move = node.last_move;
-
+            movments = node.movments;
             board = new int[N, N];
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < N; j++)
