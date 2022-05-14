@@ -173,7 +173,7 @@ namespace Program
             else if (this.zero_y == this.N - 1)
             {
                 directions.Add("up");
-                directions.Add("bottom");
+                directions.Add("down");
                 directions.Add("left");
             }
             // middle -> 4 possabilities

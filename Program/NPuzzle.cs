@@ -94,6 +94,7 @@ namespace Program
                 node = queue.boards[0];
                 Console.WriteLine("----------------------------------------");
                 node.Display();
+                Console.WriteLine(node.last_move);
                 Console.WriteLine("----------------------------------------");
                 direction.Clear();
                 direction = node.getDirections();
