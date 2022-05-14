@@ -60,13 +60,50 @@ namespace Program
             }
         }
 
-        public static void Solve(char[,] boardPuzzle) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
+        public static int Solve(int[,] boardPuzzle,int zero_x , int zero_y, bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
+            PriorityQueue queue = new PriorityQueue();
+            Node node = new Node(boardPuzzle, zero_x, zero_y);
+            List<string> direction = new List<string>(node.getDirections());
+            Node new_node = null;
+            node.Display();
+            queue.Enqueue(node,hamming);
+            do
+            {
+                if (direction.Contains("up") && node.last_move != "down")
+                {
+                    new_node = node.MoveUp(node);
+                    queue.Enqueue(new_node, hamming);
+               }
+                if (direction.Contains("down") && node.last_move != "up")
+                {
+                    new_node = node.MoveDown(node);
+                    queue.Enqueue(new_node, hamming);
+                }
+                if (direction.Contains("left") && node.last_move != "right")
+                {
+                    new_node = node.MoveLeft(node);
+                    queue.Enqueue(new_node, hamming);
+                }
+                if (direction.Contains("right") && node.last_move != "left")
+                {
+                    new_node = node.MoveRight(node);
+                    queue.Enqueue(new_node, hamming);
+                }
+                node = queue.boards[0];
+                Console.WriteLine("----------------------------------------");
+                node.Display();
+                Console.WriteLine("----------------------------------------");
+                direction.Clear();
+                direction = node.getDirections();
+
+            } while (!node.ISolved());
+
+
 
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
-            throw new NotImplementedException();
-            
+            return node.movments;            
         }
     }
 }
