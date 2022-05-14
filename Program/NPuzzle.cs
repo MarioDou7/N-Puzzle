@@ -60,7 +60,7 @@ namespace Program
             }
         }
 
-        public static void Solve(char[,] boardPuzzle) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
+        public static int Solve(int[,] boardPuzzle,int zero_x,int zero_y,bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
 
