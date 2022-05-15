@@ -151,23 +151,26 @@ namespace Program
             
         }
 
-        public static int[,] readFile(string fileName,bool sampleTest)
+        public static void readFile(string fileName,bool sampleTest)
         {
             //@"C:\Users\Ziad\source\repos\algorithm_project\Program\8 Puzzle (1).txt"
             string initialPath="";
             if (sampleTest)
             {
-                initialPath = @"C:\Users\Ziad\source\repos\algorithm_project\Program\Testcases\Sample\Sample Test\Solvable Puzzles\";
+                initialPath = @"D:\computer science\third year\second term\Algorithm\Project\[3] N Puzzle\Testcases\Sample\Sample Test\Solvable Puzzles\";
 
             }
             else
             {
-                initialPath = @"C:\Users\Ziad\source\repos\algorithm_project\Program\Testcases\Complete\Complete Test\";
+                initialPath = @"D:\computer science\third year\second term\Algorithm\Project\[3] N Puzzle\Testcases\Complete\Complete Test\";
 
             }
             FileStream fs = new FileStream(initialPath+fileName, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
             int[,] board = new int[0,0];
+            int zero_x = 0;
+            int zero_y = 0;
+            
             while (sr.Peek() != -1)
             {
                 String s = sr.ReadLine();
@@ -177,8 +180,6 @@ namespace Program
                 N = int.Parse(fields[0]);
                 int val;
                 board = new int[N, N];
-                int zero_x = 0;
-                int zero_y = 0;
 
                  s = sr.ReadLine();
                 fields = s.Split(' ');
@@ -200,8 +201,9 @@ namespace Program
             if (isSolvable)
             {
                 Console.WriteLine("Solvable");
-                displayBorad(board);
-                return board;
+
+                int movment = NPuzzle.Solve(board, zero_x, zero_y, false);
+                Console.WriteLine("Number of Movment {0}",movment);
             }
             else
             {

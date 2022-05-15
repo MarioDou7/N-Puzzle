@@ -16,14 +16,13 @@ namespace Program
         public int fn_ham;         // hamming + #movment
         public int fn_man;         // manhatten + #movment 
         public string last_move;
+        public Node parent;
 
         public Node(int[,] board,int zero_x,int zero_y)
         {
 
             
             this.N = (int)Math.Sqrt(board.Length);
-            this.fn_ham    = this.hamming + this.movments;
-            this.fn_man    = this.manhatten + this.movments;
 
             this.zero_x    = zero_x;
             this.zero_y    = zero_y;
@@ -33,13 +32,16 @@ namespace Program
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < N; j++)
                     this.board[i, j] = board[i, j];
+            this.parent = null;
 
             Manhatten();
             Hamming();
+
         }
 
         public Node(Node node)
         {
+            parent = node;
             N = node.N;
             fn_ham = node.fn_ham;
             fn_man = node.fn_man;
@@ -195,21 +197,28 @@ namespace Program
 
             return false;
         }
-        public void Display()
+        public void OptimalSteps(Node node)
+        {
+            if (node.parent == null)
+                return;
+            OptimalSteps(node.parent);
+            Display(node);
+        }
+
+        private void Display(Node node)
         {
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
                 {
-                    Console.Write(board[i, j] + "   ");
+                    Console.Write(node.board[i, j] + "   ");
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("Hamming = {0} , Manhatten = {1}", this.hamming, this.manhatten);
+            Console.WriteLine("\nHamming = {0} , Manhatten = {1}", node.hamming, node.manhatten);
+            Console.WriteLine("---------------------------------------------");
                 
         }
-
-
         private void Manhatten() // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
         {
             int row_goal;

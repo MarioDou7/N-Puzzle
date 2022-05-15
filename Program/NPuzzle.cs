@@ -67,7 +67,6 @@ namespace Program
             Node node = new Node(boardPuzzle, zero_x, zero_y);
             List<string> direction = new List<string>(node.getDirections());
             Node new_node = null;
-            node.Display();
             queue.Enqueue(node,hamming);
             do
             {
@@ -92,11 +91,7 @@ namespace Program
                     queue.Enqueue(new_node, hamming);
                 }
                 node = queue.Dequeue(hamming);
-                Console.WriteLine("----------------------------------------");
-                node.Display();
-                Console.WriteLine(node.last_move);
-                Console.WriteLine(node.movments);
-                Console.WriteLine("----------------------------------------");
+
                 direction.Clear();
                 direction = node.getDirections();
 
@@ -105,6 +100,9 @@ namespace Program
 
 
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
+            Console.WriteLine("#Steps:");
+            Console.WriteLine("---------------------------------------------");
+            node.OptimalSteps(node);
             return node.movments;            
         }
     }

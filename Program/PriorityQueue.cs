@@ -27,8 +27,8 @@ namespace Program
         public Node Dequeue(bool hamming)
         {
             Node root = boards[0];
-            boards.RemoveAt(0);
             boards[0] = boards[boards.Count - 1];
+            boards.RemoveAt(boards.Count -1);
             DownWordExchange(hamming,1);
             return root;
         }
@@ -38,19 +38,33 @@ namespace Program
             if (hamming)
             {
 
-                while (i > 1 && (Parent(i).fn_ham > boards[i-1].fn_ham || Parent(i).hamming > boards[i-1].hamming))
+                while (i > 1)
                 {
-                    Swap(ref boards ,(i/ 2)-1, i-1);
+                    if (Parent(i).fn_ham > boards[i - 1].fn_ham)
+                        Swap(ref boards ,(i/ 2)-1, i-1);
+                    
                     i /= 2;
 
+                    /*else if (Parent(i).fn_ham ==  boards[i - 1].fn_ham && Parent(i).hamming > boards[i - 1].hamming)
+                    {
+                        Swap(ref boards, (i / 2) - 1, i - 1);
+                        i /= 2;
+                    }*/
                 }
                 return;
             }
 
-            while (i > 1 && (Parent(i).fn_man> boards[i-1].fn_man || Parent(i).manhatten > boards[i-1].manhatten))
+            while (i > 1)
             {
-                Swap(ref boards, (i /2)-1, i-1);
+                if (Parent(i).fn_man > boards[i - 1].fn_man)
+                    Swap(ref boards, (i /2)-1, i-1);
+
                 i /= 2;
+                /*else if (Parent(i).fn_man == boards[i - 1].fn_man && Parent(i).manhatten > boards[i - 1].manhatten)
+                {
+                    Swap(ref boards, (i / 2) - 1, i - 1);
+                    i /= 2;
+                }*/
             }
 
         }
@@ -62,18 +76,18 @@ namespace Program
         }    
         private void DownWordExchange(bool hamming,int i)
         {
-            int right = i * 2;
-            int left = (i * 2 )+ 1;
+            int left = i * 2;
+            int right = (i * 2 ) + 1;
             int minmum;
 
             if(hamming)
             {
-                if (left <= boards.Count && (boards[left - 1].fn_ham < boards[i - 1].fn_ham || boards[left - 1].hamming < boards[i - 1].hamming))
+                if (left <= boards.Count && (boards[left - 1].fn_ham < boards[i - 1].fn_ham /*|| boards[left - 1].hamming < boards[i - 1].hamming*/))
                     minmum = left;
                 else
                     minmum = i;
 
-                if (right <= boards.Count && (boards[right - 1].fn_ham < boards[minmum - 1].fn_ham || boards[right - 1].hamming < boards[minmum - 1].hamming))
+                if (right <= boards.Count && (boards[right - 1].fn_ham < boards[minmum - 1].fn_ham /*|| boards[right - 1].hamming < boards[minmum - 1].hamming*/))
                     minmum = right;
 
                 if (minmum != i)
@@ -84,12 +98,12 @@ namespace Program
             }
             else
             {
-                if (left <= boards.Count && (boards[left - 1].fn_man < boards[i - 1].fn_man || boards[left - 1].manhatten < boards[i - 1].manhatten))
+                if (left <= boards.Count && (boards[left - 1].fn_man < boards[i - 1].fn_man /*|| boards[left - 1].manhatten < boards[i - 1].manhatten*/))
                     minmum = left;
                 else
                     minmum = i;
 
-                if (right <= boards.Count && (boards[right - 1].fn_man < boards[minmum - 1].fn_man || boards[right - 1].manhatten < boards[minmum - 1].manhatten))
+                if (right <= boards.Count && (boards[right - 1].fn_man < boards[minmum - 1].fn_man /*|| boards[right - 1].manhatten < boards[minmum - 1].manhatten*/))
                     minmum = right;
 
                 if (minmum != i)
