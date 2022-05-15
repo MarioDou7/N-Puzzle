@@ -201,7 +201,7 @@ namespace Program
             {
                 for (int j = 0; j < N; j++)
                 {
-                    Console.Write(board[i, j]);
+                    Console.Write(board[i, j] + "   ");
                 }
                 Console.WriteLine();
             }

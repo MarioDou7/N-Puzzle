@@ -91,10 +91,11 @@ namespace Program
                     new_node = node.MoveRight(node);
                     queue.Enqueue(new_node, hamming);
                 }
-                node = queue.boards[0];
+                node = queue.Dequeue(hamming);
                 Console.WriteLine("----------------------------------------");
                 node.Display();
                 Console.WriteLine(node.last_move);
+                Console.WriteLine(node.movments);
                 Console.WriteLine("----------------------------------------");
                 direction.Clear();
                 direction = node.getDirections();
