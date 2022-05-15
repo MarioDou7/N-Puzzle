@@ -95,6 +95,7 @@ namespace Program
                 Console.WriteLine("----------------------------------------");
                 node.Display();
                 Console.WriteLine(node.last_move);
+                Console.WriteLine(node.movments);
                 Console.WriteLine("----------------------------------------");
                 direction.Clear();
                 direction = node.getDirections();

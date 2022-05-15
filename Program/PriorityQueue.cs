@@ -60,10 +60,6 @@ namespace Program
             boards[pos1] = boards[pos2];
             boards[pos2] = temp;
         }    
-        private Node Parent(int index_ofChild)  // return the parent node
-        {
-            return boards[(index_ofChild/2)-1];
-        }
         private void DownWordExchange(bool hamming,int i)
         {
             int right = i * 2;
@@ -85,9 +81,27 @@ namespace Program
                     Swap(ref boards, minmum - 1, i - 1);
                     DownWordExchange(hamming, minmum);
                 }
-
-                
             }
+            else
+            {
+                if (left <= boards.Count && (boards[left - 1].fn_man < boards[i - 1].fn_man || boards[left - 1].manhatten < boards[i - 1].manhatten))
+                    minmum = left;
+                else
+                    minmum = i;
+
+                if (right <= boards.Count && (boards[right - 1].fn_man < boards[minmum - 1].fn_man || boards[right - 1].manhatten < boards[minmum - 1].manhatten))
+                    minmum = right;
+
+                if (minmum != i)
+                {
+                    Swap(ref boards, minmum - 1, i - 1);
+                    DownWordExchange(hamming, minmum);
+                }
+            }
+        }
+        private Node Parent(int index_ofChild)  // return the parent node
+        {
+            return boards[(index_ofChild/2)-1];
         }
 
     
