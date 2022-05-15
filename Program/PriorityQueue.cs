@@ -6,7 +6,7 @@ namespace Program
 {
     public class PriorityQueue
     {
-        List<Node> boards;
+        public List<Node> boards;
 
 
         public PriorityQueue()
@@ -14,9 +14,9 @@ namespace Program
             boards = new List<Node>();
         }
 
-        public void Enqueue(Node board,bool hamming)
+        public void Enqueue(Node node,bool hamming)
         {
-            boards.Add(board);
+            boards.Add(node);
             if (boards.Count == 1)
                 return;
 
@@ -27,36 +27,36 @@ namespace Program
 
         private void SortHeap(ref List<Node> boards, bool hamming) // true hamming , false Manhatten
         {
-            int i = boards.Count - 1;
+            int i = boards.Count;
             if (hamming)
             {
 
-                while (i > 1 && (Parent(i).fn_ham > boards[i].fn_ham || Parent(i).hamming > boards[i].hamming))
+                while (i > 1 && (Parent(i).fn_ham > boards[i-1].fn_ham || Parent(i).hamming > boards[i-1].hamming))
                 {
-                    Swap(i / 2, i);
+                    Swap(ref boards ,(i/ 2)-1, i-1);
                     i /= 2;
 
                 }
                 return;
             }
 
-            while (i > 1 && (Parent(i).fn_man> boards[i].fn_man || Parent(i).manhatten > boards[i].manhatten))
+            while (i > 1 && (Parent(i).fn_man> boards[i-1].fn_man || Parent(i).manhatten > boards[i-1].manhatten))
             {
-                Swap(i/2, i);
+                Swap(ref boards, (i /2)-1, i-1);
                 i /= 2;
             }
 
         }
-        private void Swap(int pos1,int pos2)
+        private void Swap(ref List<Node>boards ,int pos1,int pos2)  // swap the nodes
         {
             Node temp = boards[pos1];
             boards[pos1] = boards[pos2];
             boards[pos2] = temp;
-        }    // swap the nodes
-        private Node Parent(int index_ofChild)
+        }    
+        private Node Parent(int index_ofChild)  // return the parent node
         {
-            return boards[index_ofChild/2];
-        }  // return the parent node
+            return boards[(index_ofChild/2)-1];
+        }  
 
     
     }
