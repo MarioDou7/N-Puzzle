@@ -24,6 +24,10 @@ namespace Program
 
 
         }
+        public void Clear()
+        {
+            boards.Clear();
+        }
         public Node Dequeue(bool hamming)
         {
             Node root = boards[0];

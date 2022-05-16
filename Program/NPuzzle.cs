@@ -102,6 +102,7 @@ namespace Program
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
             Console.WriteLine("#Steps:");
             Console.WriteLine("---------------------------------------------");
+            queue.Clear();
             node.OptimalSteps(node);
             return node.movments;            
         }

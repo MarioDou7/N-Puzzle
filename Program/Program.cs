@@ -214,18 +214,5 @@ namespace Program
 
 
         }
-        static void displayBorad(int[,] board)
-        {
-            int puzzleSize = Convert.ToInt32(Math.Sqrt(board.Length));
-
-            for (int i = 0; i < puzzleSize; i++)
-            {
-                for (int j = 0; j < puzzleSize; j++)
-                {
-                    Console.Write(board[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
     }
 }
