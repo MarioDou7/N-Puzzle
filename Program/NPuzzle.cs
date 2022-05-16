@@ -92,6 +92,7 @@ namespace Program
                 }
                 node = queue.Dequeue(hamming);
 
+//                node.Display(node);
                 direction.Clear();
                 direction = node.getDirections();
 
@@ -103,7 +104,9 @@ namespace Program
             Console.WriteLine("#Steps:");
             Console.WriteLine("---------------------------------------------");
             queue.Clear();
-            node.OptimalSteps(node);
+            if(node.N == 3)
+                node.OptimalSteps(node);
+    
             return node.movments;            
         }
     }

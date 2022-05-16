@@ -201,16 +201,23 @@ namespace Program
             if (isSolvable)
             {
                 Console.WriteLine("Solvable");
+                Console.WriteLine("Would you like to use hamming (no means Manhatten) (y/n): ");
+                string heuristic = Console.ReadLine();
+                heuristic = heuristic.ToLower();
+                bool hamming = heuristic == "y" ? true : false;
 
-                int movment = NPuzzle.Solve(board, zero_x, zero_y, true);
+                long timeBefore = System.Environment.TickCount;
+                int movment = NPuzzle.Solve(board, zero_x, zero_y, hamming);
+                long timeAfter = System.Environment.TickCount;
                 Console.WriteLine("Number of Movment {0}",movment);
+                Console.WriteLine("Time: {0} s",(timeAfter-timeBefore)/1000.0);
             }
             else
             {
                 Console.WriteLine("Not Solvable");
                 throw new Exception();
             }
-
+            
 
 
         }

@@ -7,9 +7,9 @@ namespace Program
     public class Node
     {
         int[,] board;
-        int N;
         int zero_x;
         int zero_y;
+        public int N;
         public int movments = 0;
         public int manhatten;
         public int hamming;
@@ -208,7 +208,7 @@ namespace Program
             Display(node);
         }
 
-        private void Display(Node node)
+        public void Display(Node node)
         {
             for (int i = 0; i < N; i++)
             {
