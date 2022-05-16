@@ -60,16 +60,20 @@ namespace Program
             }
         }
 
-        public static int Solve(int[,] boardPuzzle,int zero_x , int zero_y, bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
+        public static int Solve(int[,]board,int zero_x,int zero_y,bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
             PriorityQueue queue = new PriorityQueue();
-            Node node = new Node(boardPuzzle, zero_x, zero_y);
-            List<string> direction = new List<string>(node.getDirections());
+            Node node = new Node(board, zero_x, zero_y);
+            List<string> direction = new List<string>();
+            
             Node new_node = null;
             queue.Enqueue(node,hamming);
             do
             {
+                direction.Clear();
+                direction = node.getDirections();
+
                 if (direction.Contains("up") && node.last_move != "down")
                 {
                     new_node = node.MoveUp(node);
@@ -92,9 +96,8 @@ namespace Program
                 }
                 node = queue.Dequeue(hamming);
 
-//                node.Display(node);
-                direction.Clear();
-                direction = node.getDirections();
+/*                Console.WriteLine(node.last_move);
+                Console.WriteLine("Hamming = {0} , Manhatten = {1}, Movment= {2}", node.hamming, node.manhatten, node.movments);*/
 
             } while (!node.ISolved());
 

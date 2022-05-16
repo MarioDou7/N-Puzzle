@@ -76,7 +76,7 @@ namespace Program
                     Console.WriteLine("\nChoose [1-3]: ");
                     Console.WriteLine("1- Manhattan & Hamming");
                     Console.WriteLine("2- Manhattan Only");
-                    Console.WriteLine("3- Large Test Csses");
+                    Console.WriteLine("3- Large Test Cases");
                     Console.Write("\nEnter your choice [1-3]: ");
 
                     char comletePuzzleChoice = (char)Console.ReadLine()[0];
@@ -204,11 +204,13 @@ namespace Program
                 Console.WriteLine("Would you like to use hamming (no means Manhatten) (y/n): ");
                 string heuristic = Console.ReadLine();
                 heuristic = heuristic.ToLower();
+
                 bool hamming = heuristic == "y" ? true : false;
 
                 long timeBefore = System.Environment.TickCount;
-                int movment = NPuzzle.Solve(board, zero_x, zero_y, hamming);
+                int movment = NPuzzle.Solve(board,zero_x,zero_y,hamming);
                 long timeAfter = System.Environment.TickCount;
+
                 Console.WriteLine("Number of Movment {0}",movment);
                 Console.WriteLine("Time: {0} s",(timeAfter-timeBefore)/1000.0);
             }

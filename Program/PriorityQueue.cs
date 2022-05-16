@@ -42,9 +42,14 @@ namespace Program
             if (hamming)
             {
 
-                while (i > 1 && Parent(i).fn_ham > boards[i - 1].fn_ham)
+                while (i > 1 /*&& Parent(i).fn_ham >= boards[i - 1].fn_ham*/)
                 {
-                    Swap(ref boards, (i / 2) - 1, i - 1);
+                    if (Parent(i).fn_ham > boards[i - 1].fn_ham)
+                        Swap(ref boards, (i / 2) - 1, i - 1);
+                    else if (Parent(i).fn_ham == boards[i - 1].fn_ham && Parent(i).hamming > boards[i - 1].hamming)
+                        Swap(ref boards, (i / 2) - 1, i - 1);
+                    else
+                        break;
 
                     i /= 2;
 
@@ -52,9 +57,14 @@ namespace Program
                 return;
             }
 
-            while (i > 1 && Parent(i).fn_man > boards[i - 1].fn_man)
+            while (i > 1 /*&& Parent(i).fn_man >= boards[i - 1].fn_man*/)
             {
-                Swap(ref boards, (i / 2) - 1, i - 1);
+                if (Parent(i).fn_man > boards[i - 1].fn_man)
+                    Swap(ref boards, (i / 2) - 1, i - 1);
+                else if (Parent(i).fn_man == boards[i - 1].fn_man && Parent(i).manhatten > boards[i - 1].manhatten)
+                    Swap(ref boards, (i / 2) - 1, i - 1);
+                else
+                    break;
 
                 i /= 2;
 
