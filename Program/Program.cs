@@ -202,7 +202,7 @@ namespace Program
             {
                 Console.WriteLine("Solvable");
 
-                int movment = NPuzzle.Solve(board, zero_x, zero_y, false);
+                int movment = NPuzzle.Solve(board, zero_x, zero_y, true);
                 Console.WriteLine("Number of Movment {0}",movment);
             }
             else

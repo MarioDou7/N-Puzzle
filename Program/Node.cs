@@ -200,7 +200,10 @@ namespace Program
         public void OptimalSteps(Node node)
         {
             if (node.parent == null)
+            {
+                Display(node);
                 return;
+            }
             OptimalSteps(node.parent);
             Display(node);
         }
