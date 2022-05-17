@@ -1,0 +1,32 @@
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.exe
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.deps.json
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.runtimeconfig.json
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.runtimeconfig.dev.json
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.dll
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\ref\Program.dll
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\bin\Debug\net6.0\Program.pdb
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.csproj.AssemblyReference.cache
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.GeneratedMSBuildEditorConfig.editorconfig
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.AssemblyInfoInputs.cache
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.AssemblyInfo.cs
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.csproj.CoreCompileInputs.cache
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.dll
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\ref\Program.dll
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.pdb
+D:\computer science\third year\second term\Algorithm\Project\Program\Program\obj\Debug\net6.0\Program.genruntimeconfig.cache
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.exe
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.deps.json
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.runtimeconfig.json
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.runtimeconfig.dev.json
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.dll
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\ref\Program.dll
+C:\Users\Ziad\source\repos\algorithm_project\Program\bin\Debug\net6.0\Program.pdb
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.csproj.AssemblyReference.cache
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.AssemblyInfoInputs.cache
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.AssemblyInfo.cs
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.dll
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\ref\Program.dll
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.pdb
+C:\Users\Ziad\source\repos\algorithm_project\Program\obj\Debug\net6.0\Program.genruntimeconfig.cache

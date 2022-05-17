@@ -76,7 +76,7 @@ namespace Program
                     Console.WriteLine("\nChoose [1-3]: ");
                     Console.WriteLine("1- Manhattan & Hamming");
                     Console.WriteLine("2- Manhattan Only");
-                    Console.WriteLine("3- Large Test Csses");
+                    Console.WriteLine("3- Large Test Cases");
                     Console.Write("\nEnter your choice [1-3]: ");
 
                     char comletePuzzleChoice = (char)Console.ReadLine()[0];
@@ -174,20 +174,25 @@ namespace Program
             while (sr.Peek() != -1)
             {
                 String s = sr.ReadLine();
-                String[] fields;
-                fields = s.Split(' ');
                 int N;
-                N = int.Parse(fields[0]);
+                N = int.Parse(s);
                 int val;
                 board = new int[N, N];
+                String[] fields = new string[N];
 
-                 s = sr.ReadLine();
-                fields = s.Split(' ');
                 for (int i = 0; i < N; i++)
                 {
                   s = sr.ReadLine();
-                    if(s!=null)
+                    if (s=="")
+                    {
+                        s = sr.ReadLine();
+                        if (s != null)
+                            fields = s.Split(' ');
+                    }
+                    else
+                    {
                         fields = s.Split(' ');
+                    }
                     for (int j = 0; j < N; j++)
                     {
                         val = int.Parse(fields[j]);
@@ -201,16 +206,25 @@ namespace Program
             if (isSolvable)
             {
                 Console.WriteLine("Solvable");
+                Console.WriteLine("Would you like to use hamming (no means Manhatten) (y/n): ");
+                string heuristic = Console.ReadLine();
+                heuristic = heuristic.ToLower();
 
-                int movment = NPuzzle.Solve(board, zero_x, zero_y, true);
+                bool hamming = heuristic == "y" ? true : false;
+
+                long timeBefore = System.Environment.TickCount;
+                int movment = NPuzzle.Solve(board,zero_x,zero_y,hamming);
+                long timeAfter = System.Environment.TickCount;
+
                 Console.WriteLine("Number of Movment {0}",movment);
+                Console.WriteLine("Time: {0} s",(timeAfter-timeBefore)/1000.0);
             }
             else
             {
                 Console.WriteLine("Not Solvable");
                 throw new Exception();
             }
-
+            
 
 
         }
