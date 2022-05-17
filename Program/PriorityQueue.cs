@@ -42,7 +42,7 @@ namespace Program
             if (hamming)
             {
 
-                while (i > 1 /*&& Parent(i).fn_ham >= boards[i - 1].fn_ham*/)
+                while (i > 1)
                 {
                     if (Parent(i).fn_ham > boards[i - 1].fn_ham)
                         Swap(ref boards, (i / 2) - 1, i - 1);
@@ -57,7 +57,7 @@ namespace Program
                 return;
             }
 
-            while (i > 1 /*&& Parent(i).fn_man >= boards[i - 1].fn_man*/)
+            while (i > 1 )
             {
                 if (Parent(i).fn_man > boards[i - 1].fn_man)
                     Swap(ref boards, (i / 2) - 1, i - 1);
@@ -85,14 +85,24 @@ namespace Program
 
             if (hamming)
             {
-                if (left <= boards.Count && (boards[left - 1].fn_ham < boards[i - 1].fn_ham))
-                    minmum = left;
+                if(left <= boards.Count)
+                {
+                    if ((boards[left - 1].fn_ham < boards[i - 1].fn_ham))
+                        minmum = left;
+                    else if (boards[left - 1].fn_ham == boards[i - 1].fn_ham && boards[left - 1].hamming < boards[i - 1].hamming)
+                        minmum = left;
+                    else minmum = i;
+                }
                 else
                     minmum = i;
 
-                if (right <= boards.Count && (boards[right - 1].fn_ham < boards[minmum - 1].fn_ham))
-                    minmum = right;
-
+                if (right <= boards.Count)
+                {
+                    if (boards[right - 1].fn_ham < boards[minmum - 1].fn_ham)
+                        minmum = right;
+                    else if ((boards[right - 1].fn_ham == boards[minmum - 1].fn_ham) && (boards[right - 1].hamming < boards[minmum - 1].hamming))
+                        minmum = right;
+                }
                 if (minmum != i)
                 {
                     Swap(ref boards, minmum - 1, i - 1);
@@ -101,13 +111,24 @@ namespace Program
             }
             else
             {
-                if (left <= boards.Count && (boards[left - 1].fn_man < boards[i - 1].fn_man))
-                    minmum = left;
+                if (left <= boards.Count)
+                {
+                    if ((boards[left - 1].fn_man < boards[i - 1].fn_man))
+                        minmum = left;
+                    else if (boards[left - 1].fn_man == boards[i - 1].fn_man && boards[left - 1].manhatten < boards[i - 1].manhatten)
+                        minmum = left;
+                    else minmum = i;
+                }
                 else
                     minmum = i;
 
-                if (right <= boards.Count && (boards[right - 1].fn_man < boards[minmum - 1].fn_man))
-                    minmum = right;
+                if (right <= boards.Count)
+                {
+                    if (boards[right - 1].fn_man < boards[minmum - 1].fn_man)
+                        minmum = right;
+                    else if ((boards[right - 1].fn_ham == boards[minmum - 1].fn_man) && (boards[right - 1].manhatten < boards[minmum - 1].manhatten))
+                        minmum = right;
+                }
 
                 if (minmum != i)
                 {

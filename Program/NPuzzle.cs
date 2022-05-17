@@ -96,6 +96,7 @@ namespace Program
                 }
                 node = queue.Dequeue(hamming);
 
+                node.Display(node);
 /*                Console.WriteLine(node.last_move);
                 Console.WriteLine("Hamming = {0} , Manhatten = {1}, Movment= {2}", node.hamming, node.manhatten, node.movments);*/
 
@@ -108,7 +109,7 @@ namespace Program
             Console.WriteLine("---------------------------------------------");
             queue.Clear();
             if(node.N == 3)
-                node.OptimalSteps(node);
+                 node.OptimalSteps(node);
     
             return node.movments;            
         }
