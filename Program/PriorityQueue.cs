@@ -49,11 +49,6 @@ namespace Program
                     
                     i /= 2;
 
-                    /*else if (Parent(i).fn_ham ==  boards[i - 1].fn_ham && Parent(i).hamming > boards[i - 1].hamming)
-                    {
-                        Swap(ref boards, (i / 2) - 1, i - 1);
-                        i /= 2;
-                    }*/
                 }
                 return;
             }
@@ -64,11 +59,6 @@ namespace Program
                     Swap(ref boards, (i /2)-1, i-1);
 
                 i /= 2;
-                /*else if (Parent(i).fn_man == boards[i - 1].fn_man && Parent(i).manhatten > boards[i - 1].manhatten)
-                {
-                    Swap(ref boards, (i / 2) - 1, i - 1);
-                    i /= 2;
-                }*/
             }
 
         }
