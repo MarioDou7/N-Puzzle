@@ -218,7 +218,7 @@ namespace Program
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("\nHamming = {0} , Manhatten = {1}", node.hamming, node.manhatten);
+            Console.WriteLine("\nHamming = {0} , Manhatten = {1}, Movments = {2}", node.hamming, node.manhatten,node.movments);
             Console.WriteLine("---------------------------------------------");
                 
         }
