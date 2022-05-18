@@ -15,7 +15,7 @@ namespace Program
             boards = new List<Node>();
         }
 
-        public void Enqueue(Node node, bool hamming)
+        public void Enqueue(Node node, bool hamming)  //O(log(V)) V number of elements in the queue
         {
             boards.Add(node);
             if (boards.Count == 1)
@@ -29,7 +29,7 @@ namespace Program
         {
             boards.Clear();
         }
-        public Node Dequeue(bool hamming)
+        public Node Dequeue(bool hamming) //O(log(V)) V number of elements in the queue
         {
             Node root = boards[0];
             boards[0] = boards[boards.Count - 1];
@@ -37,7 +37,7 @@ namespace Program
             DownWordExchange(hamming, 1);
             return root;
         }
-        private void SortHeap(ref List<Node> boards, bool hamming) // true hamming , false Manhatten
+        private void SortHeap(ref List<Node> boards, bool hamming) // true hamming , false Manhatten  O(log(V)) V number of elements in the queue
         {
             int i = boards.Count;
             if (hamming)
@@ -72,13 +72,13 @@ namespace Program
             }
 
         }
-        private void Swap(ref List<Node> boards, int pos1, int pos2)  // swap the nodes
+        private void Swap(ref List<Node> boards, int pos1, int pos2)  // swap the nodes O(1)
         {
             Node temp = boards[pos1];
             boards[pos1] = boards[pos2];
             boards[pos2] = temp;
         }
-        private void DownWordExchange(bool hamming, int i)
+        private void DownWordExchange(bool hamming, int i) // O(log(V)) V number of elements in the queue
         {
             int left = i * 2;
             int right = (i * 2) + 1;
@@ -139,10 +139,10 @@ namespace Program
                 DownWordExchange(hamming, minmum);
             }
         }
-        private Node Parent(int index_ofChild)  // return the parent node
+        private Node Parent(int index_ofChild)  // return the parent node O(1)
         {
             return boards[(index_ofChild / 2) - 1];
-        }
+        } 
 
 
     }
