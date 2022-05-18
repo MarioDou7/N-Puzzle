@@ -29,11 +29,13 @@ namespace Program
             this.last_move = "none";
 
             this.board = new int[N, N];
-            for (int i = 0; i < N; i++)
-                for (int j = 0; j < N; j++)
-                    this.board[i, j] = board[i, j];
+            /*           for (int i = 0; i < N; i++)
+                           for (int j = 0; j < N; j++)
+                               this.board[i, j] = board[i, j];*/
+            //Array.Copy(board,this.board,board.Length);
+            
             this.parent = null;
-
+            this.board = (int[,])board.Clone();
             Manhatten();
             Hamming();
 
@@ -52,12 +54,13 @@ namespace Program
             last_move = node.last_move;
             movments = node.movments;
             board = new int[N, N];
-            for (int i = 0; i < N; i++)
-                for (int j = 0; j < N; j++)
-                    board[i, j] = node.board[i, j];
-                
+            /*            for (int i = 0; i < N; i++)
+                            for (int j = 0; j < N; j++)
+                                board[i, j] = node.board[i, j];*/
+            //Array.Copy(node.board, board, node.board.Length);
+            board = (int[,])node.board.Clone();
         }
-        
+
         public Node MoveUp(Node node)
         {
             Node child = new Node(node);
@@ -210,6 +213,7 @@ namespace Program
 
         public void Display(Node node)
         {
+            Console.WriteLine("#" + node.movments);
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
@@ -218,7 +222,8 @@ namespace Program
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("\nHamming = {0} , Manhatten = {1}, Movments = {2}", node.hamming, node.manhatten,node.movments);
+            Console.WriteLine(node.last_move);
+            //Console.WriteLine("Hamming = {0} , Manhatten = {1}", node.hamming, node.manhatten);
             Console.WriteLine("---------------------------------------------");
                 
         }

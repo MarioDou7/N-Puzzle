@@ -11,6 +11,7 @@ namespace Program
 
         public PriorityQueue()
         {
+            
             boards = new List<Node>();
         }
 
@@ -108,33 +109,34 @@ namespace Program
                     Swap(ref boards, minmum - 1, i - 1);
                     DownWordExchange(hamming, minmum);
                 }
+                return;
+            }
+
+            if (left <= boards.Count)
+            {
+                if ((boards[left - 1].fn_man < boards[i - 1].fn_man))
+                    minmum = left;
+
+                else if (boards[left - 1].fn_man == boards[i - 1].fn_man && boards[left - 1].manhatten < boards[i - 1].manhatten)
+                    minmum = left;
+
+                else minmum = i;
             }
             else
+                minmum = i;
+
+            if (right <= boards.Count)
             {
-                if (left <= boards.Count)
-                {
-                    if ((boards[left - 1].fn_man < boards[i - 1].fn_man))
-                        minmum = left;
-                    else if (boards[left - 1].fn_man == boards[i - 1].fn_man && boards[left - 1].manhatten < boards[i - 1].manhatten)
-                        minmum = left;
-                    else minmum = i;
-                }
-                else
-                    minmum = i;
+                if (boards[right - 1].fn_man < boards[minmum - 1].fn_man)
+                    minmum = right;
+                else if ((boards[right - 1].fn_ham == boards[minmum - 1].fn_man) && (boards[right - 1].manhatten < boards[minmum - 1].manhatten))
+                    minmum = right;
+            }
 
-                if (right <= boards.Count)
-                {
-                    if (boards[right - 1].fn_man < boards[minmum - 1].fn_man)
-                        minmum = right;
-                    else if ((boards[right - 1].fn_ham == boards[minmum - 1].fn_man) && (boards[right - 1].manhatten < boards[minmum - 1].manhatten))
-                        minmum = right;
-                }
-
-                if (minmum != i)
-                {
-                    Swap(ref boards, minmum - 1, i - 1);
-                    DownWordExchange(hamming, minmum);
-                }
+            if (minmum != i)
+            {
+                Swap(ref boards, minmum - 1, i - 1);
+                DownWordExchange(hamming, minmum);
             }
         }
         private Node Parent(int index_ofChild)  // return the parent node

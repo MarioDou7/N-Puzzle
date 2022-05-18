@@ -157,12 +157,12 @@ namespace Program
             string initialPath="";
             if (sampleTest)
             {
-                initialPath = @"C:\Users\Ziad\source\repos\algorithm_project\Program\Testcases\Sample\Sample Test\Solvable Puzzles\";
+                initialPath = @"D:\computer science\third year\second term\Algorithm\Project\[3] N Puzzle\Testcases\Sample\Sample Test\Solvable Puzzles\";
 
             }
             else
             {
-                initialPath = @"C:\Users\Ziad\source\repos\algorithm_project\Program\Testcases\Complete\Complete Test\";
+                initialPath = @"D:\computer science\third year\second term\Algorithm\Project\[3] N Puzzle\Testcases\Complete\Complete Test\";
 
             }
             FileStream fs = new FileStream(initialPath+fileName, FileMode.Open);

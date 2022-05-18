@@ -109,7 +109,7 @@ namespace Program
             Console.WriteLine("---------------------------------------------");
             queue.Clear();
             if(node.N == 3)
-                 node.OptimalSteps(node);
+                node.OptimalSteps(node);
     
             return node.movments;            
         }
