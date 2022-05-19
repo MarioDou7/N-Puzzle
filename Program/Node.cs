@@ -6,9 +6,10 @@ namespace Program
 {
     public class Node
     {
-        int[,] board;
         int zero_x;
         int zero_y;
+     //   public string id;
+        public int[,] board;
         public int N;
         public int movments = 0;
         public int manhatten;
@@ -18,22 +19,30 @@ namespace Program
         public string last_move;
         public Node parent;
 
-        public Node(int[,] board,int zero_x,int zero_y)
+        public Node(int[,] board,int zero_x,int zero_y,bool hamming)
         {
 
             
             this.N = (int)Math.Sqrt(board.Length);
-
             this.zero_x    = zero_x;
             this.zero_y    = zero_y;
             this.last_move = "none";
 
             this.board = new int[N, N];
             this.parent = null;
-            this.board = (int[,])board.Clone();
-            Manhatten();
-            Hamming();
+            
+            for (int i = 0; i < N; i++)
+                for (int j = 0; j < N; j++)
+                {
+                    this.board[i, j] = board[i, j];
+   //                 id += String.Join(" ", board[i, j]);
+                }
+            
 
+            if (hamming)
+                Hamming();
+            else
+                Manhatten();
         }
 
         public Node(Node node)
@@ -50,138 +59,96 @@ namespace Program
             movments = node.movments;
             board = new int[N, N];
             board = (int[,])node.board.Clone();
+            
         }
 
-        public Node MoveUp(Node node)   //O(N^2)
+        public Node MoveUp(Node node,bool hamming)   //O(N^2)
         {
             Node child = new Node(node); //O(N^2)
-            int manhatten_node_number = node.New_Manhatten(zero_x-1, zero_y);
-            int hamming_node_number = node.New_Hamming(zero_x - 1, zero_y);
-
+            
             child.board[zero_x, zero_y] = child.board[zero_x - 1, zero_y];
-            child.board[zero_x - 1, zero_y] = 0;
-
-            int hamming_child_number = node.New_Hamming(zero_x, zero_y);
-            int manhatten_child_number = child.New_Manhatten(zero_x, zero_y);
+            child.board[zero_x - 1, zero_y] = 0;            
 
             child.zero_x = zero_x - 1 ;
             child.last_move = "up";
 
             child.movments++;
-            if (hamming_node_number > hamming_child_number)
-                child.hamming--;
-            else if (hamming_node_number < hamming_child_number)
-                child.hamming++;
+            //child.CalculateID(child.board);
 
+            if (hamming)
+            {
+                child.New_Hamming(zero_x - 1, zero_y, zero_x, zero_y, node);
+                return child;
+            }
 
-            if (manhatten_node_number > manhatten_child_number)
-                child.manhatten -= Math.Abs(manhatten_node_number - manhatten_child_number);
-            else if (manhatten_node_number < manhatten_child_number)
-                child.manhatten += Math.Abs(manhatten_node_number - manhatten_child_number);
-
-            child.fn_ham = child.hamming + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
+            child.New_Manhatten(zero_x - 1, zero_y, zero_x, zero_y, node);
             return child;
         }
-        public Node MoveDown(Node node)
+        public Node MoveDown(Node node,bool hamming)
         {
             Node child = new Node(node);
-            int manhatten_node_number = node.New_Manhatten(zero_x + 1, zero_y);
-            int hamming_node_number = node.New_Hamming(zero_x + 1, zero_y);
 
             child.board[zero_x, zero_y] = child.board[zero_x + 1, zero_y];
             child.board[zero_x + 1, zero_y] = 0;
-
-            int hamming_child_number = node.New_Hamming(zero_x, zero_y);
-            int manhatten_child_number = child.New_Manhatten(zero_x, zero_y);
 
             child.zero_x = zero_x + 1;
             child.last_move = "down";
 
             child.movments++;
-            
-            if (hamming_node_number > hamming_child_number)
-                child.hamming--;
-            else if (hamming_node_number < hamming_child_number)
-                child.hamming++;
+           // child.CalculateID(child.board);
 
+            if (hamming)
+            {
+                child.New_Hamming(zero_x + 1, zero_y, zero_x, zero_y, node);
+                return child;
+            }
 
-            if (manhatten_node_number > manhatten_child_number)
-                child.manhatten -= Math.Abs(manhatten_node_number - manhatten_child_number);
-            else if (manhatten_node_number < manhatten_child_number)
-                child.manhatten += Math.Abs(manhatten_node_number - manhatten_child_number);
-
-            child.fn_ham = child.hamming + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
+            child.New_Manhatten(zero_x + 1, zero_y, zero_x, zero_y, node);
             return child;
         }
-        public Node MoveLeft(Node node)
+        public Node MoveLeft(Node node, bool hamming)
         {
             Node child = new Node(node);
-            int manhatten_node_number = node.New_Manhatten(zero_x, zero_y - 1);
-            int hamming_node_number = node.New_Hamming(zero_x, zero_y - 1);
 
             child.board[zero_x, zero_y] = child.board[zero_x, zero_y - 1];
             child.board[zero_x, zero_y - 1] = 0;
 
-            int hamming_child_number = node.New_Hamming(zero_x, zero_y);
-            int manhatten_child_number = child.New_Manhatten(zero_x, zero_y);
-
+            
             child.zero_y = zero_y - 1;
             child.last_move = "left";
 
             child.movments++;
+           // child.CalculateID(child.board);
 
-            if (hamming_node_number > hamming_child_number)
-                child.hamming--;
-            else if (hamming_node_number < hamming_child_number)
-                child.hamming++;
+            if (hamming)
+            {
+                child.New_Hamming(zero_x, zero_y-1, zero_x, zero_y, node);
+                return child;
+            }
 
-
-            if (manhatten_node_number > manhatten_child_number)
-                child.manhatten -= Math.Abs(manhatten_node_number - manhatten_child_number);
-            else if (manhatten_node_number < manhatten_child_number)
-                child.manhatten += Math.Abs(manhatten_node_number - manhatten_child_number);
-
-
-            child.fn_ham = child.hamming + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-
+            child.New_Manhatten(zero_x, zero_y-1, zero_x, zero_y, node);
             return child;
         }
-        public Node MoveRight(Node node)
+        public Node MoveRight(Node node, bool hamming)
         {
             Node child = new Node(node);
-            int manhatten_node_number = node.New_Manhatten(zero_x, zero_y + 1);
-            int hamming_node_number = node.New_Hamming(zero_x, zero_y + 1);
             
             child.board[zero_x, zero_y] = child.board[zero_x, zero_y + 1];
             child.board[zero_x, zero_y + 1] = 0;
             
-            int hamming_child_number = node.New_Hamming(zero_x, zero_y);
-            int manhatten_child_number = child.New_Manhatten(zero_x, zero_y);
-
             child.zero_y = zero_y + 1;
             child.last_move = "right";
 
             child.movments++;
-            if (hamming_node_number > hamming_child_number)
-                child.hamming--;
-            else if (hamming_node_number < hamming_child_number)
-                child.hamming++;
+        //    child.CalculateID(child.board);
 
-            if (manhatten_node_number > manhatten_child_number)
-                child.manhatten -= Math.Abs(manhatten_node_number - manhatten_child_number);
-            else if (manhatten_node_number < manhatten_child_number)
-                child.manhatten += Math.Abs(manhatten_node_number - manhatten_child_number);
+            if (hamming)
+            {
+                child.New_Hamming(zero_x , zero_y+1, zero_x, zero_y, node);
+                return child;
+            }
 
-            child.fn_ham = child.hamming + child.movments;
-            child.fn_man = child.manhatten + child.movments;
-
-            
+            child.New_Manhatten(zero_x, zero_y+1, zero_x, zero_y, node);
             return child;
         }
 
@@ -252,15 +219,18 @@ namespace Program
             }
             return directions;
         }
-        public bool ISolved()
+        
+        public bool ISolved(bool hamming)
         {
-            if (hamming == 0)
+            if (hamming && this.hamming == 0)
                 return true;
-            if (manhatten == 0)
+            
+            else if (!hamming && this.manhatten == 0)
                 return true;
 
             return false;
         }
+  
         public void OptimalSteps(Node node)
         {
             if (node.parent == null)
@@ -288,6 +258,7 @@ namespace Program
             Console.WriteLine("---------------------------------------------");
                 
         }
+
         private void Manhatten() // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
         {
             int row_goal;
@@ -332,30 +303,52 @@ namespace Program
             this.fn_ham = this.hamming + this.movments;
         }
 
-
-        private int New_Hamming(int x, int y) //O(1)
+        private void New_Hamming(int old_pos_x, int old_pos_y,int new_pos_x, int new_pos_y,Node node) //O(1)
         {
-            int number = board[x, y];
+            int number = node.board[old_pos_x, old_pos_y];
             int row_goal = (number - 1) / N;
             int col_goal = (number - 1) % N;
+            int old_hamming = 0;
+            int new_hamming = 0;
+            if (row_goal != old_pos_x || col_goal != old_pos_y)
+                old_hamming = 1;
 
-            if (row_goal != x || col_goal != y)
-                return 1;
+            if (row_goal != new_pos_x || col_goal != new_pos_y)
+                new_hamming = 1;
+
+            if (old_hamming > new_hamming)
+                this.hamming--;
+            else if (old_hamming < new_hamming)
+                this.hamming++;
+
+            this.fn_ham = this.hamming + this.movments;
+        }
+
+        private void New_Manhatten(int old_pos_x, int old_pos_y, int new_pos_x, int new_pos_y,Node node)  //O(1)
+        {
+            int number = node.board[old_pos_x, old_pos_y];
+            int row_goal = (number - 1) / N;
+            int col_goal = (number - 1) % N;
             
-            return 0;
-        }
+            int old_manhatten_of_number = (Math.Abs(row_goal - old_pos_x) + Math.Abs(col_goal - old_pos_y));
+            
+            int new_manhatten_of_number = (Math.Abs(row_goal - new_pos_x) + Math.Abs(col_goal - new_pos_y));
 
-        private int New_Manhatten(int x , int y)  //O(1)
+            if (new_manhatten_of_number > old_manhatten_of_number)
+                this.manhatten += Math.Abs(new_manhatten_of_number - old_manhatten_of_number);
+            else if (new_manhatten_of_number < old_manhatten_of_number)
+                this.manhatten -= Math.Abs(new_manhatten_of_number - old_manhatten_of_number);
+
+            this.fn_man =this.manhatten + this.movments;
+        }
+   
+/*        private void CalculateID(int[,] board)
         {
-            int number = board[x, y];
-            int row_goal = (number - 1) / N;
-            int col_goal = (number - 1) % N;
-
-            int manhatten_of_number = (Math.Abs(row_goal - x) + Math.Abs(col_goal - y));
-
-            return manhatten_of_number;
+            for (int i = 0; i < N; i++)
+                for (int j = 0; j < N; j++)
+                    this.id += String.Join(" ", board[i, j]);
         }
-    }
+*/    }
 
 }
 

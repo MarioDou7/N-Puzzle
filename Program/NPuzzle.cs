@@ -64,9 +64,10 @@ namespace Program
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
             PriorityQueue queue = new PriorityQueue();
-            Node node = new Node(board, zero_x, zero_y);
+            Node node = new Node(board, zero_x, zero_y,hamming);
             List<string> direction = new List<string>();
-            
+  //          HashSet<string> closedlist = new HashSet<string>();
+
             Node new_node = null;
             queue.Enqueue(node,hamming);
             do
@@ -76,31 +77,37 @@ namespace Program
 
                 if (direction.Contains("up") && node.last_move != "down")
                 {
-                    new_node = node.MoveUp(node);
-                    queue.Enqueue(new_node, hamming);
-               }
+                    new_node = node.MoveUp(node,hamming);
+            //        if (!closedlist.Contains(new_node.id))
+                        queue.Enqueue(new_node, hamming);
+                }
                 if (direction.Contains("down") && node.last_move != "up")
                 {
-                    new_node = node.MoveDown(node);
-                    queue.Enqueue(new_node, hamming);
+                    new_node = node.MoveDown(node,hamming);
+          //          if (!closedlist.Contains(new_node.id))
+                        queue.Enqueue(new_node, hamming);
                 }
                 if (direction.Contains("left") && node.last_move != "right")
                 {
-                    new_node = node.MoveLeft(node);
-                    queue.Enqueue(new_node, hamming);
+                    new_node = node.MoveLeft(node,hamming);
+        //            if (!closedlist.Contains(new_node.id))
+                        queue.Enqueue(new_node, hamming);
                 }
                 if (direction.Contains("right") && node.last_move != "left")
                 {
-                    new_node = node.MoveRight(node);
-                    queue.Enqueue(new_node, hamming);
+                    new_node = node.MoveRight(node,hamming);
+              //      if(!closedlist.Contains(new_node.id))
+                        queue.Enqueue(new_node, hamming);
                 }
+                
                 node = queue.Dequeue(hamming);
+      //          closedlist.Add(node.id);
 
                 //node.Display(node);
 /*                Console.WriteLine(node.last_move);
                 Console.WriteLine("Hamming = {0} , Manhatten = {1}, Movment= {2}", node.hamming, node.manhatten, node.movments);*/
 
-            } while (!node.ISolved());
+            } while (!node.ISolved(hamming));
 
 
 
