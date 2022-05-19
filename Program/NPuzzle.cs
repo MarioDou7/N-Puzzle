@@ -60,7 +60,7 @@ namespace Program
             }
         }
 
-        public static int Solve(int[,]board,int zero_x,int zero_y,bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
+        public static Node Solve(int[,]board,int zero_x,int zero_y,bool hamming) // bounded by O(E log(V)), E is the total number of moves and V is the number of states till reaching to the solution 
         {
             //3.	IF SOLVABLE, apply A* search algorithm 
             PriorityQueue queue = new PriorityQueue();
@@ -115,14 +115,9 @@ namespace Program
 
 
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
-            Console.WriteLine("#Steps:");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Queue ELements = {0}",queue.boards.Count);
-
-            if (node.N == 3)
-                node.OptimalSteps(node);
+            
     
-            return node.movments;            
+            return node;            
         }
     }
 }

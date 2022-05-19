@@ -213,11 +213,13 @@ namespace Program
                 bool hamming = heuristic == "y" ? true : false;
 
                 long timeBefore = System.Environment.TickCount;
-                int movment = NPuzzle.Solve(board,zero_x,zero_y,hamming);
+                Node node = NPuzzle.Solve(board,zero_x,zero_y,hamming);
                 long timeAfter = System.Environment.TickCount;
 
-                Console.WriteLine("Number of Movment {0}",movment);
+                Console.WriteLine("Number of Movment {0}",node.movments);
                 Console.WriteLine("Time: {0} s",(timeAfter-timeBefore)/1000.0);
+                if(node.N == 3)
+                    node.OptimalSteps(node);
             }
             else
             {
