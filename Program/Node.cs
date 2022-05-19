@@ -8,17 +8,17 @@ namespace Program
     {
         int zero_x;
         int zero_y;
-     //   public string id;
+        public string id;
         public int[,] board;
         public int N;
         public int movments = 0;
         public int manhatten;
         public int hamming;
-        public int fn_ham;         // hamming + #movment
-        public int fn_man;         // manhatten + #movment 
+/*        public int fn_ham;         // hamming + #movment
+        public int fn_man;         // manhatten + #movment */
         public string last_move;
         public Node parent;
-
+        public int cost;
         public Node(int[,] board,int zero_x,int zero_y,bool hamming)
         {
 
@@ -35,7 +35,7 @@ namespace Program
                 for (int j = 0; j < N; j++)
                 {
                     this.board[i, j] = board[i, j];
-   //                 id += String.Join(" ", board[i, j]);
+                    id += String.Join(" ", board[i, j]);
                 }
             
 
@@ -49,8 +49,8 @@ namespace Program
         {
             parent = node;
             N = node.N;
-            fn_ham = node.fn_ham;
-            fn_man = node.fn_man;
+            cost = node.cost;
+            cost = node.cost;
             zero_x = node.zero_x;
             zero_y = node.zero_y;
             hamming = node.hamming;
@@ -73,15 +73,15 @@ namespace Program
             child.last_move = "up";
 
             child.movments++;
-            //child.CalculateID(child.board);
+            child.CalculateID(child.board);
 
             if (hamming)
             {
-                child.New_Hamming(zero_x - 1, zero_y, zero_x, zero_y, node);
+                child.New_Hamming(zero_x - 1, zero_y, zero_x, zero_y, node); //O(1)
                 return child;
             }
 
-            child.New_Manhatten(zero_x - 1, zero_y, zero_x, zero_y, node);
+            child.New_Manhatten(zero_x - 1, zero_y, zero_x, zero_y, node);//O(1)
             return child;
         }
         public Node MoveDown(Node node,bool hamming)
@@ -95,7 +95,7 @@ namespace Program
             child.last_move = "down";
 
             child.movments++;
-           // child.CalculateID(child.board);
+            child.CalculateID(child.board);
 
             if (hamming)
             {
@@ -118,7 +118,7 @@ namespace Program
             child.last_move = "left";
 
             child.movments++;
-           // child.CalculateID(child.board);
+            child.CalculateID(child.board);
 
             if (hamming)
             {
@@ -140,7 +140,7 @@ namespace Program
             child.last_move = "right";
 
             child.movments++;
-        //    child.CalculateID(child.board);
+            child.CalculateID(child.board);
 
             if (hamming)
             {
@@ -242,7 +242,7 @@ namespace Program
             Display(node);
         }
 
-        public void Display(Node node)
+        public void Display(Node node)//O(N^2) N: Puzzle size
         {
             Console.WriteLine("#" + node.movments);
             for (int i = 0; i < N; i++)
@@ -259,7 +259,7 @@ namespace Program
                 
         }
 
-        private void Manhatten() // The sum of the distances (sum of the vertical and horizontal distance) from the blocks to their goal position + number of moves made so far to get to the state.
+        private void Manhatten()     //O(N^2) N: Puzzle size
         {
             int row_goal;
             int col_goal;
@@ -278,11 +278,11 @@ namespace Program
             }
 
             this.manhatten = manhatten;
-            this.fn_man = this.manhatten + this.movments;
+            this.cost = this.manhatten + this.movments;
 
         }
         
-        private void Hamming() // The number of blocks in the wrong position + the number of moves made so far to get to the state. 
+        private void Hamming()              //O(N^2) N: Puzzle size
         {            
             int number,row_goal,col_goal;
             int hamm = 0;
@@ -300,7 +300,7 @@ namespace Program
             }
 
             this.hamming = hamm;
-            this.fn_ham = this.hamming + this.movments;
+            this.cost = this.hamming + this.movments;
         }
 
         private void New_Hamming(int old_pos_x, int old_pos_y,int new_pos_x, int new_pos_y,Node node) //O(1)
@@ -310,6 +310,7 @@ namespace Program
             int col_goal = (number - 1) % N;
             int old_hamming = 0;
             int new_hamming = 0;
+
             if (row_goal != old_pos_x || col_goal != old_pos_y)
                 old_hamming = 1;
 
@@ -321,7 +322,7 @@ namespace Program
             else if (old_hamming < new_hamming)
                 this.hamming++;
 
-            this.fn_ham = this.hamming + this.movments;
+            this.cost = this.hamming + this.movments;
         }
 
         private void New_Manhatten(int old_pos_x, int old_pos_y, int new_pos_x, int new_pos_y,Node node)  //O(1)
@@ -339,16 +340,16 @@ namespace Program
             else if (new_manhatten_of_number < old_manhatten_of_number)
                 this.manhatten -= Math.Abs(new_manhatten_of_number - old_manhatten_of_number);
 
-            this.fn_man =this.manhatten + this.movments;
+            this.cost =this.manhatten + this.movments;
         }
-   
-/*        private void CalculateID(int[,] board)
+
+        private void CalculateID(int[,] board)
         {
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < N; j++)
                     this.id += String.Join(" ", board[i, j]);
         }
-*/    }
+    }
 
 }
 

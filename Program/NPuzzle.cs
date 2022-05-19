@@ -66,42 +66,45 @@ namespace Program
             PriorityQueue queue = new PriorityQueue();
             Node node = new Node(board, zero_x, zero_y,hamming);
             List<string> direction = new List<string>();
-  //          HashSet<string> closedlist = new HashSet<string>();
+            HashSet<string> closedlist = new HashSet<string>();
 
             Node new_node = null;
             queue.Enqueue(node,hamming);
             do
             {
                 direction.Clear();
-                direction = node.getDirections();
+                direction = node.getDirections(); //O(1)
 
                 if (direction.Contains("up") && node.last_move != "down")
                 {
                     new_node = node.MoveUp(node,hamming);
-            //        if (!closedlist.Contains(new_node.id))
+                    if (!closedlist.Contains(new_node.id))
                         queue.Enqueue(new_node, hamming);
+
                 }
                 if (direction.Contains("down") && node.last_move != "up")
                 {
                     new_node = node.MoveDown(node,hamming);
-          //          if (!closedlist.Contains(new_node.id))
+                    if (!closedlist.Contains(new_node.id))
                         queue.Enqueue(new_node, hamming);
+
                 }
                 if (direction.Contains("left") && node.last_move != "right")
                 {
                     new_node = node.MoveLeft(node,hamming);
-        //            if (!closedlist.Contains(new_node.id))
+                    if (!closedlist.Contains(new_node.id))
                         queue.Enqueue(new_node, hamming);
+
                 }
                 if (direction.Contains("right") && node.last_move != "left")
                 {
                     new_node = node.MoveRight(node,hamming);
-              //      if(!closedlist.Contains(new_node.id))
+                    if (!closedlist.Contains(new_node.id))
                         queue.Enqueue(new_node, hamming);
                 }
                 
                 node = queue.Dequeue(hamming);
-      //          closedlist.Add(node.id);
+                closedlist.Add(node.id);
 
                 //node.Display(node);
 /*                Console.WriteLine(node.last_move);
@@ -114,8 +117,9 @@ namespace Program
             //4.	Print a STEP by STEP movements occur in the A* algorithms till you reach the final solvable board.
             Console.WriteLine("#Steps:");
             Console.WriteLine("---------------------------------------------");
-            queue.Clear();
-            if(node.N == 3)
+            Console.WriteLine("Queue ELements = {0}",queue.boards.Count);
+
+            if (node.N == 3)
                 node.OptimalSteps(node);
     
             return node.movments;            
